@@ -120,7 +120,14 @@ export function LandingPage() {
       <main id="main-content">
         <section className="hero" id="top">
           <div className="hero-media" aria-hidden="true">
-            <img src="./images/staxbound-portal.webp" alt="" width={1672} height={941} fetchPriority="high" />
+            <MotionImage
+              animatedSrc="./images/staxbound-portal-bg.gif"
+              animatedWebpSrc="./images/staxbound-portal-bg-motion.webp"
+              stillSrc="./images/staxbound-portal.webp"
+              alt=""
+              className="background-motion-picture"
+              eager
+            />
             <div className="hero-media-overlay" />
           </div>
 
@@ -405,7 +412,13 @@ export function LandingPage() {
 
         <section className="section moat-section">
           <div className="moat-media" aria-hidden="true">
-            <img src="./images/staxbound-core.webp" alt="" width={1536} height={1024} loading="lazy" decoding="async" />
+            <MotionImage
+              animatedSrc="./images/staxbound-core-bg.gif"
+              animatedWebpSrc="./images/staxbound-core-bg-motion.webp"
+              stillSrc="./images/staxbound-core.webp"
+              alt=""
+              className="background-motion-picture"
+            />
           </div>
           <div className="shell moat-content">
             <Reveal><SectionTag index="11">The foundation</SectionTag></Reveal>
@@ -699,7 +712,13 @@ export function LandingPage() {
 
         <section className="final-section">
           <div className="final-media" aria-hidden="true">
-            <img src="./images/staxbound-network.webp" alt="" width={1916} height={821} loading="lazy" decoding="async" />
+            <MotionImage
+              animatedSrc="./images/staxbound-network-bg.gif"
+              animatedWebpSrc="./images/staxbound-network-bg-motion.webp"
+              stillSrc="./images/staxbound-network.webp"
+              alt=""
+              className="background-motion-picture"
+            />
             <div className="final-overlay" />
           </div>
           <div className="shell final-content">

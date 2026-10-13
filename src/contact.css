@@ -17,15 +17,16 @@
   inset: 0;
 }
 
-.contact-hero-media > img {
+.contact-hero-media .background-motion-picture img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+  filter: saturate(1.2) contrast(1.1) brightness(1.05);
 }
 
 .contact-hero-media > div {
-  background: linear-gradient(0deg, #050a08 2%, rgba(5, 10, 8, 0.62) 55%, rgba(5, 10, 8, 0.28)), linear-gradient(90deg, rgba(5, 10, 8, 0.96), transparent 70%);
+  background: linear-gradient(0deg, #050a08 2%, rgba(5, 10, 8, 0.52) 55%, rgba(5, 10, 8, 0.14)), linear-gradient(90deg, rgba(5, 10, 8, 0.9), transparent 70%);
 }
 
 .contact-hero-content {
@@ -675,7 +676,7 @@
     font-size: clamp(3.7rem, 17vw, 5.5rem);
   }
 
-  .contact-hero-media > img {
+  .contact-hero-media .background-motion-picture img {
     object-position: 66% center;
   }
 

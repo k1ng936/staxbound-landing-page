@@ -30,7 +30,7 @@ Without configuration, the enquiry form opens the visitor's email application wi
 
 ## Motion assets
 
-Animated artwork lives in `public/images/`. Each of the seven visuals has a sharp 1280×720 animated WebP for current browsers, a seamless 640×360 GIF fallback, and a text-bearing WebP poster for reduced-motion preferences and the header's pause control. The original text-free WebPs are retained as full-bleed ambient backgrounds.
+Animated artwork lives in `public/images/`. Each of the seven showcase visuals has a sharp 1280×720 animated WebP for current browsers, a seamless 640×360 GIF fallback, and a text-bearing WebP poster for reduced-motion preferences and the header's pause control. The portal, core, and network scenes also have separate text-free 1600×900 motion loops for full-bleed backgrounds, with compact 640×360 GIF fallbacks. The original text-free WebPs remain the stills used when motion is paused.
 
 ## GitHub Pages fallback
 
@@ -41,6 +41,8 @@ npm run build:pages-fallback
 ```
 
 Run `bash scripts/build-gifs.sh` to regenerate every delivery format from the originals. Regeneration requires `ffmpeg` and the DejaVu Sans fonts available at the paths declared in that script. The script normalizes source aspect ratios before animating them so artwork and typography are never stretched.
+
+Run `bash scripts/build-gifs.sh backgrounds-only` when only the full-bleed background loops need to be regenerated.
 
 ## Launch checklist
 

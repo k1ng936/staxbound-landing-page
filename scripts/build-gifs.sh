@@ -11,6 +11,11 @@ OUTPUT_HEIGHT=720
 FPS=6
 DURATION=6
 FRAME_COUNT=36
+BACKGROUND_WIDTH=1600
+BACKGROUND_HEIGHT=900
+BACKGROUND_FPS=8
+BACKGROUND_DURATION=8
+BACKGROUND_FRAME_COUNT=64
 
 for dependency in ffmpeg "$FONT_BOLD" "$FONT_REGULAR"; do
   if [[ ! -e "$dependency" ]] && ! command -v "$dependency" >/dev/null 2>&1; then
@@ -64,12 +69,47 @@ render_loop() {
     "$poster_output"
 }
 
+render_background_loop() {
+  local source="$1"
+  local stem="$2"
+  local phase="$3"
+  local motion_output="${ASSET_DIR}/${stem}-bg-motion.webp"
+  local gif_output="${ASSET_DIR}/${stem}-bg.gif"
+  local background_filter
+
+  # Background loops stay text-free because cover-cropping embedded copy at
+  # full-bleed sizes creates oversized fragments behind the page content.
+  # The wider camera travel makes the artwork feel alive, while periodic
+  # sine/cosine movement keeps the final-to-first-frame transition seamless.
+  background_filter="scale=${BACKGROUND_WIDTH}:${BACKGROUND_HEIGHT}:force_original_aspect_ratio=increase:flags=lanczos,crop=${BACKGROUND_WIDTH}:${BACKGROUND_HEIGHT}:(iw-${BACKGROUND_WIDTH})/2:(ih-${BACKGROUND_HEIGHT})/2,zoompan=z='1.055+0.0125*(1-cos(2*PI*(on+${phase})/${BACKGROUND_FRAME_COUNT}))':x='iw/2-(iw/zoom/2)+34*sin(2*PI*(on+${phase})/${BACKGROUND_FRAME_COUNT})':y='ih/2-(ih/zoom/2)+22*cos(2*PI*(on+${phase})/${BACKGROUND_FRAME_COUNT})':d=1:s=${BACKGROUND_WIDTH}x${BACKGROUND_HEIGHT}:fps=${BACKGROUND_FPS},eq=brightness='0.012*sin(2*PI*(n+${phase})/${BACKGROUND_FRAME_COUNT})':saturation='1.06+0.04*cos(2*PI*(n+${phase})/${BACKGROUND_FRAME_COUNT})'"
+
+  printf 'Rendering %s background\n' "$stem"
+
+  ffmpeg -y -loglevel error -stats \
+    -loop 1 -framerate "$BACKGROUND_FPS" -t "$BACKGROUND_DURATION" -i "${ASSET_DIR}/${source}" \
+    -vf "$background_filter" \
+    -frames:v "$BACKGROUND_FRAME_COUNT" -an -loop 0 \
+    -c:v libwebp_anim -lossless 0 -q:v 74 -compression_level 4 \
+    "$motion_output"
+
+  ffmpeg -y -loglevel error -stats \
+    -loop 1 -framerate "$BACKGROUND_FPS" -t "$BACKGROUND_DURATION" -i "${ASSET_DIR}/${source}" \
+    -filter_complex "[0:v]${background_filter},scale=640:360:flags=lanczos,split[frames][palette_source];[palette_source]palettegen=max_colors=80:stats_mode=diff[palette];[frames][palette]paletteuse=dither=bayer:bayer_scale=5" \
+    -frames:v "$BACKGROUND_FRAME_COUNT" -loop 0 "$gif_output"
+}
+
 # Top and bottom panels alternate to keep the seven pieces visually varied.
 # All critical copy remains in the central safe area for common laptop ratios.
-render_loop "staxbound-portal.webp" "staxbound-portal" "CATEGORY CREATION" "A NEW VERTICAL" "READY TO MOVE" 0 438
-render_loop "staxbound-core.webp" "staxbound-core" "DIFFERENTIATED FOUNDATION" "PATENT PENDING" "BUILT FOR PARTNERS" 5 64
-render_loop "staxbound-network.webp" "staxbound-network" "DISTRIBUTION AT SCALE" "ONE INTEGRATION" "A NETWORK OF DOORS" 10 438
-render_loop "staxbound-vertical.webp" "staxbound-vertical" "THE UNCLAIMED AXIS" "THE NEXT CATEGORY" "RISES HERE" 15 64
-render_loop "staxbound-vault.webp" "staxbound-vault" "STAXBOUND COMPANY ESTIMATE" "\$50–60B" "OPPORTUNITY UNLOCKED" 20 438
-render_loop "staxbound-aggregator.webp" "staxbound-aggregator" "FOUNDING AGGREGATORS" "ONE PARTNER" "MULTIPLE PATHS" 25 64
-render_loop "staxbound-growth.webp" "staxbound-growth" "TWO GROWTH LEVERS" "AUDIENCE POTENTIAL" "REVENUE POTENTIAL" 30 438
+if [[ "${1:-all}" != "backgrounds-only" ]]; then
+  render_loop "staxbound-portal.webp" "staxbound-portal" "CATEGORY CREATION" "A NEW VERTICAL" "READY TO MOVE" 0 438
+  render_loop "staxbound-core.webp" "staxbound-core" "DIFFERENTIATED FOUNDATION" "PATENT PENDING" "BUILT FOR PARTNERS" 5 64
+  render_loop "staxbound-network.webp" "staxbound-network" "DISTRIBUTION AT SCALE" "ONE INTEGRATION" "A NETWORK OF DOORS" 10 438
+  render_loop "staxbound-vertical.webp" "staxbound-vertical" "THE UNCLAIMED AXIS" "THE NEXT CATEGORY" "RISES HERE" 15 64
+  render_loop "staxbound-vault.webp" "staxbound-vault" "STAXBOUND COMPANY ESTIMATE" "\$50–60B" "OPPORTUNITY UNLOCKED" 20 438
+  render_loop "staxbound-aggregator.webp" "staxbound-aggregator" "FOUNDING AGGREGATORS" "ONE PARTNER" "MULTIPLE PATHS" 25 64
+  render_loop "staxbound-growth.webp" "staxbound-growth" "TWO GROWTH LEVERS" "AUDIENCE POTENTIAL" "REVENUE POTENTIAL" 30 438
+fi
+
+render_background_loop "staxbound-portal.webp" "staxbound-portal" 0
+render_background_loop "staxbound-core.webp" "staxbound-core" 17
+render_background_loop "staxbound-network.webp" "staxbound-network" 33

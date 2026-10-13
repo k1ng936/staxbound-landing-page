@@ -12,19 +12,19 @@
   inset: 0;
 }
 
-.hero-media > img {
+.hero-media .background-motion-picture img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 63% center;
-  filter: saturate(1.08) contrast(1.08);
+  filter: saturate(1.24) contrast(1.12) brightness(1.06);
 }
 
 .hero-media-overlay {
   background:
-    linear-gradient(90deg, rgba(3, 6, 5, 0.99) 0%, rgba(3, 6, 5, 0.93) 27%, rgba(3, 6, 5, 0.42) 61%, rgba(3, 6, 5, 0.18) 100%),
+    linear-gradient(90deg, rgba(3, 6, 5, 0.98) 0%, rgba(3, 6, 5, 0.89) 27%, rgba(3, 6, 5, 0.3) 61%, rgba(3, 6, 5, 0.08) 100%),
     linear-gradient(0deg, #050a08 0%, transparent 28%),
-    radial-gradient(circle at 76% 46%, transparent 0, rgba(5, 10, 8, 0.1) 35%, rgba(5, 10, 8, 0.7) 100%);
+    radial-gradient(circle at 76% 46%, transparent 0, rgba(5, 10, 8, 0.06) 35%, rgba(5, 10, 8, 0.58) 100%);
 }
 
 .hero-axis {
@@ -1180,14 +1180,15 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(2, 4, 3, 0.98) 0%, rgba(2, 4, 3, 0.83) 39%, rgba(2, 4, 3, 0.12) 76%), linear-gradient(0deg, rgba(2, 4, 3, 0.8), transparent 40%);
+  background: linear-gradient(90deg, rgba(2, 4, 3, 0.96) 0%, rgba(2, 4, 3, 0.72) 39%, rgba(2, 4, 3, 0.04) 76%), linear-gradient(0deg, rgba(2, 4, 3, 0.7), transparent 42%);
 }
 
-.moat-media > img {
+.moat-media .background-motion-picture img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 72% center;
+  filter: saturate(1.2) contrast(1.1) brightness(1.05);
 }
 
 .moat-content {
@@ -2167,14 +2168,16 @@
   inset: 0;
 }
 
-.final-media > img {
+.final-media .background-motion-picture img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  filter: saturate(1.2) contrast(1.1) brightness(1.05);
 }
 
 .final-overlay {
-  background: linear-gradient(0deg, rgba(3, 6, 5, 1) 0%, rgba(3, 6, 5, 0.3) 58%, rgba(3, 6, 5, 0.25)), linear-gradient(90deg, rgba(3, 6, 5, 0.85), transparent 65%);
+  background: linear-gradient(0deg, rgba(3, 6, 5, 0.98) 0%, rgba(3, 6, 5, 0.18) 58%, rgba(3, 6, 5, 0.1)), linear-gradient(90deg, rgba(3, 6, 5, 0.72), transparent 65%);
 }
 
 .final-content {
@@ -2350,7 +2353,7 @@
     gap: 42px;
   }
 
-  .hero-media > img {
+  .hero-media .background-motion-picture img {
     opacity: 0.8;
     object-position: 68% center;
   }
@@ -2732,7 +2735,7 @@
     background: linear-gradient(0deg, #020403 8%, rgba(2, 4, 3, 0.75) 65%, rgba(2, 4, 3, 0.1));
   }
 
-  .moat-media > img {
+  .moat-media .background-motion-picture img {
     object-position: center top;
   }
 

@@ -84,6 +84,31 @@ svg {
   height: 100%;
 }
 
+.background-motion-picture {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.background-motion-picture img {
+  object-fit: cover;
+  transform: scale(1.045) translate3d(-0.6%, 0, 0);
+  will-change: transform, filter;
+  animation: backgroundCinematicDrift 16s ease-in-out infinite alternate;
+}
+
+.background-motion-picture::after {
+  content: '';
+  position: absolute;
+  inset: -12%;
+  pointer-events: none;
+  opacity: 0.2;
+  background: radial-gradient(circle at 68% 46%, rgba(201, 255, 61, 0.28), transparent 18%, transparent 52%);
+  mix-blend-mode: screen;
+  transform: translate3d(-5%, 0, 0);
+  animation: backgroundLightPass 9s ease-in-out infinite alternate;
+}
+
 ::selection {
   background: var(--lime);
   color: var(--ink);
@@ -579,6 +604,18 @@ p {
 
 @keyframes blink {
   50% { opacity: 0; }
+}
+
+@keyframes backgroundCinematicDrift {
+  0% { transform: scale(1.045) translate3d(-0.6%, 0, 0); }
+  55% { transform: scale(1.075) translate3d(0.7%, -0.35%, 0); }
+  100% { transform: scale(1.055) translate3d(0.2%, 0.45%, 0); }
+}
+
+@keyframes backgroundLightPass {
+  0% { opacity: 0.1; transform: translate3d(-8%, 0, 0) scale(0.96); }
+  55% { opacity: 0.25; }
+  100% { opacity: 0.16; transform: translate3d(8%, -2%, 0) scale(1.06); }
 }
 
 @media (max-width: 1100px) {
