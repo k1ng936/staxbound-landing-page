@@ -30,7 +30,9 @@ Without configuration, the enquiry form opens the visitor's email application wi
 
 ## Motion assets
 
-Animated artwork lives in `public/images/`; matching WebP stills support reduced-motion preferences and the header's pause control. Run `bash scripts/build-gifs.sh` to regenerate all seven GIFs from the stills. Regeneration requires `ffmpeg` and the DejaVu Sans fonts available at the paths declared in that script.
+Animated artwork lives in `public/images/`. Each of the seven visuals has a sharp 1280×720 animated WebP for current browsers, a seamless 640×360 GIF fallback, and a text-bearing WebP poster for reduced-motion preferences and the header's pause control. The original text-free WebPs are retained as full-bleed ambient backgrounds.
+
+Run `bash scripts/build-gifs.sh` to regenerate every delivery format from the originals. Regeneration requires `ffmpeg` and the DejaVu Sans fonts available at the paths declared in that script. The script normalizes source aspect ratios before animating them so artwork and typography are never stretched.
 
 ## Launch checklist
 

@@ -120,12 +120,7 @@ export function LandingPage() {
       <main id="main-content">
         <section className="hero" id="top">
           <div className="hero-media" aria-hidden="true">
-            <MotionImage
-              animatedSrc="./images/staxbound-portal.gif"
-              stillSrc="./images/staxbound-portal.webp"
-              alt=""
-              eager
-            />
+            <img src="./images/staxbound-portal.webp" alt="" width={1672} height={941} fetchPriority="high" />
             <div className="hero-media-overlay" />
           </div>
 
@@ -162,17 +157,22 @@ export function LandingPage() {
                 </Reveal>
               </div>
 
-              <Reveal className="hero-orbit" delay={240}>
-                <div className="orbit-ring orbit-one" />
-                <div className="orbit-ring orbit-two" />
-                <div className="orbit-center">
-                  <span>Category</span>
-                  <strong>01</strong>
-                  <small>Unclaimed</small>
+              <Reveal className="hero-visual" delay={240}>
+                <div className="cinema-frame hero-motion-frame">
+                  <MotionImage
+                    animatedSrc="./images/staxbound-portal.gif"
+                    animatedWebpSrc="./images/staxbound-portal-motion.webp"
+                    stillSrc="./images/staxbound-portal-poster.webp"
+                    alt="A luminous portal introducing a new StaxBound gaming vertical"
+                    eager
+                  />
+                  <span>NEW CATEGORY / 01</span>
                 </div>
-                <div className="orbit-stat orbit-stat-one"><span>$50–60B</span><small>company estimate</small></div>
-                <div className="orbit-stat orbit-stat-two"><span>Built</span><small>core platform</small></div>
-                <div className="orbit-stat orbit-stat-three"><span>Patent</span><small>pending</small></div>
+                <div className="hero-visual-stats">
+                  <span><strong>$50–60B</strong><small>company estimate</small></span>
+                  <span><strong>Built</strong><small>core platform</small></span>
+                  <span><strong>Patent</strong><small>pending</small></span>
+                </div>
               </Reveal>
             </div>
 
@@ -247,8 +247,8 @@ export function LandingPage() {
               </Reveal>
             </div>
             <Reveal className="cinema-frame cinema-vertical" delay={180}>
-              <MotionImage animatedSrc="./images/staxbound-vertical.gif" stillSrc="./images/staxbound-vertical.webp" alt="Abstract luminous vertical emerging from a field of dark platforms" />
-              <span>THE UNCLAIMED AXIS / 01</span>
+              <MotionImage animatedSrc="./images/staxbound-vertical.gif" animatedWebpSrc="./images/staxbound-vertical-motion.webp" stillSrc="./images/staxbound-vertical-poster.webp" alt="Abstract luminous vertical emerging from a field of dark platforms" />
+              <span>THE UNCLAIMED AXIS / 02</span>
             </Reveal>
           </div>
         </section>
@@ -257,8 +257,8 @@ export function LandingPage() {
           <div className="shell">
             <Reveal><SectionTag index="03">The scale</SectionTag></Reveal>
             <Reveal className="cinema-frame cinema-vault" delay={60}>
-              <MotionImage animatedSrc="./images/staxbound-vault.gif" stillSrc="./images/staxbound-vault.webp" alt="Abstract illuminated opportunity vault opening in a dark landscape" />
-              <span>UNTAPPED OPPORTUNITY / 02</span>
+              <MotionImage animatedSrc="./images/staxbound-vault.gif" animatedWebpSrc="./images/staxbound-vault-motion.webp" stillSrc="./images/staxbound-vault-poster.webp" alt="Abstract illuminated opportunity vault opening in a dark landscape" />
+              <span>UNTAPPED OPPORTUNITY / 03</span>
             </Reveal>
             <Reveal className="number-lockup" delay={80}>
               <span className="number-prefix">$</span>
@@ -284,8 +284,8 @@ export function LandingPage() {
               <h2>Expand who enters. Expand what the lobby can earn.</h2>
             </Reveal>
             <Reveal className="cinema-frame cinema-growth" delay={70}>
-              <MotionImage animatedSrc="./images/staxbound-growth.gif" stillSrc="./images/staxbound-growth.webp" alt="Two luminous energy streams joining into a new vertical growth engine" />
-              <span>TWO GROWTH LEVERS / 03</span>
+              <MotionImage animatedSrc="./images/staxbound-growth.gif" animatedWebpSrc="./images/staxbound-growth-motion.webp" stillSrc="./images/staxbound-growth-poster.webp" alt="Two luminous energy streams joining into a new vertical growth engine" />
+              <span>TWO GROWTH LEVERS / 04</span>
             </Reveal>
             <div className="growth-diagram">
               <Reveal className="growth-card growth-card-a" delay={80}>
@@ -405,17 +405,23 @@ export function LandingPage() {
 
         <section className="section moat-section">
           <div className="moat-media" aria-hidden="true">
-            <MotionImage animatedSrc="./images/staxbound-core.gif" stillSrc="./images/staxbound-core.webp" alt="" />
+            <img src="./images/staxbound-core.webp" alt="" width={1536} height={1024} loading="lazy" decoding="async" />
           </div>
           <div className="shell moat-content">
             <Reveal><SectionTag index="11">The foundation</SectionTag></Reveal>
-            <Reveal className="moat-card" delay={90}>
-              <Fingerprint size={32} />
-              <p className="eyebrow">Patent-pending technology</p>
-              <h2>A differentiated core—kept deliberately out of public view.</h2>
-              <p>The technology behind StaxBound includes patent-pending elements. The open web gets the opportunity. Qualified partners get the product and technical diligence.</p>
-              <small>Patent pending indicates filed applications; it does not mean a patent has been granted or guarantee that one will issue.</small>
-            </Reveal>
+            <div className="moat-layout">
+              <Reveal className="moat-card" delay={90}>
+                <Fingerprint size={32} />
+                <p className="eyebrow">Patent-pending technology</p>
+                <h2>A differentiated core—kept deliberately out of public view.</h2>
+                <p>The technology behind StaxBound includes patent-pending elements. The open web gets the opportunity. Qualified partners get the product and technical diligence.</p>
+                <small>Patent pending indicates filed applications; it does not mean a patent has been granted or guarantee that one will issue.</small>
+              </Reveal>
+              <Reveal className="cinema-frame moat-motion-frame" delay={150}>
+                <MotionImage animatedSrc="./images/staxbound-core.gif" animatedWebpSrc="./images/staxbound-core-motion.webp" stillSrc="./images/staxbound-core-poster.webp" alt="A luminous protected core representing StaxBound's patent-pending foundation" />
+                <span>DIFFERENTIATED CORE / 05</span>
+              </Reveal>
+            </div>
           </div>
         </section>
 
@@ -447,8 +453,8 @@ export function LandingPage() {
               </Reveal>
             </div>
             <Reveal className="cinema-frame cinema-aggregator" delay={120}>
-              <MotionImage animatedSrc="./images/staxbound-aggregator.gif" stillSrc="./images/staxbound-aggregator.webp" alt="A luminous central integration branching into a broad network of operator gateways" />
-              <span>NETWORK DISTRIBUTION / 04</span>
+              <MotionImage animatedSrc="./images/staxbound-aggregator.gif" animatedWebpSrc="./images/staxbound-aggregator-motion.webp" stillSrc="./images/staxbound-aggregator-poster.webp" alt="A luminous central integration branching into a broad network of operator gateways" />
+              <span>NETWORK DISTRIBUTION / 06</span>
             </Reveal>
             <div className="benefit-grid">
               {[
@@ -693,15 +699,21 @@ export function LandingPage() {
 
         <section className="final-section">
           <div className="final-media" aria-hidden="true">
-            <MotionImage animatedSrc="./images/staxbound-network.gif" stillSrc="./images/staxbound-network.webp" alt="" />
+            <img src="./images/staxbound-network.webp" alt="" width={1916} height={821} loading="lazy" decoding="async" />
             <div className="final-overlay" />
           </div>
           <div className="shell final-content">
             <Reveal><SectionTag index="26">The decision</SectionTag></Reveal>
-            <Reveal delay={70}>
-              <p className="eyebrow">The vertical is ready.</p>
-              <h2>Who brings it to market <em>first?</em></h2>
-            </Reveal>
+            <div className="final-lead-grid">
+              <Reveal delay={70}>
+                <p className="eyebrow">The vertical is ready.</p>
+                <h2>Who brings it to market <em>first?</em></h2>
+              </Reveal>
+              <Reveal className="cinema-frame final-motion-frame" delay={120}>
+                <MotionImage animatedSrc="./images/staxbound-network.gif" animatedWebpSrc="./images/staxbound-network-motion.webp" stillSrc="./images/staxbound-network-poster.webp" alt="A luminous network of operator gateways connected through one integration" />
+                <span>DISTRIBUTION AT SCALE / 07</span>
+              </Reveal>
+            </div>
             <Reveal className="final-proof" delay={130}>
               <span><CircleDot /> $50–60B company-estimated opportunity</span>
               <span><CircleDot /> Core platform built</span>

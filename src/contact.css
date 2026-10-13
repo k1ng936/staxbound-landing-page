@@ -17,7 +17,7 @@
   inset: 0;
 }
 
-.contact-hero-media img {
+.contact-hero-media > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -675,7 +675,7 @@
     font-size: clamp(3.7rem, 17vw, 5.5rem);
   }
 
-  .contact-hero-media img {
+  .contact-hero-media > img {
     object-position: 66% center;
   }
 

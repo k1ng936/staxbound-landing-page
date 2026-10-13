@@ -10,7 +10,6 @@ import {
   Sparkles,
 } from 'lucide-react'
 import { type FormEvent, useState } from 'react'
-import { MotionImage } from './components/MotionImage'
 import { Reveal } from './components/Reveal'
 import { ActionLink, SectionTag, SiteChrome } from './components/SiteChrome'
 
@@ -79,7 +78,7 @@ export function ContactPage() {
       <main id="main-content" className="contact-page">
         <section className="contact-hero">
           <div className="contact-hero-media" aria-hidden="true">
-            <MotionImage animatedSrc="./images/staxbound-network.gif" stillSrc="./images/staxbound-network.webp" alt="" eager />
+            <img src="./images/staxbound-network.webp" alt="" width={1916} height={821} fetchPriority="high" />
             <div />
           </div>
           <div className="shell contact-hero-content">

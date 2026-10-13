@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react'
 
 type MotionImageProps = {
   animatedSrc: string
+  animatedWebpSrc: string
   stillSrc: string
   alt: string
   className?: string
   eager?: boolean
 }
 
-export function MotionImage({ animatedSrc, stillSrc, alt, className = '', eager = false }: MotionImageProps) {
+export function MotionImage({ animatedSrc, animatedWebpSrc, stillSrc, alt, className = '', eager = false }: MotionImageProps) {
   const getMotionPaused = () =>
     window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
     window.localStorage.getItem('staxbound-motion') === 'paused'
@@ -28,15 +29,17 @@ export function MotionImage({ animatedSrc, stillSrc, alt, className = '', eager 
   }, [])
 
   return (
-    <img
-      src={reduceMotion ? stillSrc : animatedSrc}
-      alt={alt}
-      className={className}
-      loading={eager ? 'eager' : 'lazy'}
-      fetchPriority={eager ? 'high' : 'auto'}
-      decoding="async"
-      width={640}
-      height={360}
-    />
+    <picture className={`motion-picture ${className}`.trim()}>
+      {!reduceMotion && <source srcSet={animatedWebpSrc} type="image/webp" />}
+      <img
+        src={reduceMotion ? stillSrc : animatedSrc}
+        alt={alt}
+        loading={eager ? 'eager' : 'lazy'}
+        fetchPriority={eager ? 'high' : 'auto'}
+        decoding="async"
+        width={1280}
+        height={720}
+      />
+    </picture>
   )
 }
