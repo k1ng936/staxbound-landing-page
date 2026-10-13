@@ -18,5 +18,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="./src/main.tsx"></script>
+    <script>
+      (() => {
+        const sources = Array.from(document.scripts, (script) => script.getAttribute('src') || '')
+        const isUncompiledSource = sources.some((source) => /(?:^|\/)src\/main\.tsx(?:\?|$)/.test(source))
+        const isViteDevelopment = sources.some((source) => source.includes('/@vite/client'))
+
+        if (isUncompiledSource && !isViteDevelopment) {
+          window.location.replace('./docs/contact.html')
+        }
+      })()
+    </script>
   </body>
 </html>

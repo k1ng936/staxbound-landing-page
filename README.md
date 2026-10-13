@@ -32,6 +32,14 @@ Without configuration, the enquiry form opens the visitor's email application wi
 
 Animated artwork lives in `public/images/`. Each of the seven visuals has a sharp 1280×720 animated WebP for current browsers, a seamless 640×360 GIF fallback, and a text-bearing WebP poster for reduced-motion preferences and the header's pause control. The original text-free WebPs are retained as full-bleed ambient backgrounds.
 
+## GitHub Pages fallback
+
+The preferred Pages source is **GitHub Actions**, which publishes `dist/` using `.github/workflows/pages.yml`. A committed production build also lives in `docs/` so the site remains functional if GitHub Pages is accidentally configured to publish `main/(root)`. Regenerate that fallback after site changes with:
+
+```bash
+npm run build:pages-fallback
+```
+
 Run `bash scripts/build-gifs.sh` to regenerate every delivery format from the originals. Regeneration requires `ffmpeg` and the DejaVu Sans fonts available at the paths declared in that script. The script normalizes source aspect ratios before animating them so artwork and typography are never stretched.
 
 ## Launch checklist
